@@ -19,25 +19,25 @@
 
 ### Common SQL Clauses
 
-```sql
+`
 Clause	Purpose
-SELECT	Retrieve data from one or more tables
-FROM	Specify the table(s) to query
-WHERE	Filter rows based on conditions
-ORDER BY	Sort the result set
-GROUP BY	Group rows that share a value
-HAVING	Filter groups (like WHERE but for grouped data)
-LIMIT / TOP	Limit the number of rows returned (depends on SQL dialect)
-JOIN	Combine rows from multiple tables
-DISTINCT	Remove duplicate rows
-INSERT INTO	Add new rows into a table
-UPDATE	Modify existing rows
-DELETE	Delete rows from a table
-CREATE	Create tables or databases
-ALTER	Modify table structure
-DROP	Delete tables or databases
+- SELECT	Retrieve data from one or more tables
+- FROM	Specify the table(s) to query
+- WHERE	Filter rows based on conditions
+- ORDER BY	Sort the result set
+- GROUP BY	Group rows that share a value
+- HAVING	Filter groups (like WHERE but for grouped data)
+- LIMIT / TOP	Limit the number of rows returned (depends on - SQL dialect)
+- JOIN	Combine rows from multiple tables
+- DISTINCT	Remove duplicate rows
+- INSERT INTO	Add new rows into a table
+- UPDATE	Modify existing rows
+- DELETE	Delete rows from a table
+- CREATE	Create tables or databases
+- ALTER	Modify table structure
+- DROP	Delete tables or databases
 
-```
+`
 
 
 
@@ -246,12 +246,11 @@ FROM students
 GROUP BY class;
 ```
 
-> Result: For each class, you get the number of students and the average age.
+Result: For each class, you get the number of students and the average age.
 
-> Important Notes
+Important Notes
 
-Aggregate functions ignore NULLs (except COUNT(*)).
-
+> Aggregate functions ignore NULLs (except COUNT(*)).
 You can use HAVING to filter after aggregation:
 
 ```sql
@@ -267,8 +266,7 @@ HAVING COUNT(*) > 10;
 ## SQL DISTINCT Clause
 
 > The DISTINCT clause is used to remove duplicate rows from the result set of a SELECT query.
-
-> It ensures that only unique values appear in the output.
+It ensures that only unique values appear in the output.
 
 Example: Without vs With DISTINCT
 
