@@ -19,7 +19,7 @@
 
 ### Common SQL Clauses
 
-`
+
 Clause	Purpose
 - SELECT	Retrieve data from one or more tables
 - FROM	Specify the table(s) to query
@@ -37,7 +37,7 @@ Clause	Purpose
 - ALTER	Modify table structure
 - DROP	Delete tables or databases
 
-`
+
 
 
 
