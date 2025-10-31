@@ -15,7 +15,11 @@
 
 ## SELECT
 > The SELECT statement in SQL is used to retrieve data from a database.
-<h3> SELECT * means choose all columns from a table
+> SELECT * means choose all columns from a table
+```sql
+SELECT * FROM students; -- means all columns
+SELECT name, age FROM students; -- get only name and age columns
+```
 
 ## LIMIT
 > It is used to restrict the number of rows returned by a query. 
@@ -26,4 +30,6 @@
 
 ## WHERE
 > It allows me not all rows but some rows base on conditions is true
+```sql
 
+```
