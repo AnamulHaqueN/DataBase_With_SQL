@@ -103,9 +103,9 @@ SELECT * FROM students WHERE email IS NULL;
 
 - LIKE is used in a WHERE clause to match patterns in string data.
 
-There are two special wildcards:
-`%	Zero or more characters	'A%' matches Amin, Ali`
-`_	Exactly one character	'A_i_' matches Amin, Avid`
+> There are two special wildcards:
+- `%	- Zero or more characters	'A%' matches Amin, Ali`
+- `_	- Exactly one character	'A_i_' matches Amin, Avid`
 
 ```sql
 -- Names starting with A
