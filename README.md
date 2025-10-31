@@ -8,7 +8,11 @@
 > Software via which we can interact with a database.
 
 ### Database Management software
-> MySQL
-> Oracle
-> PostgreSQL
-> SQLite
+```html
+<ul>
+<li> MySQL </li>
+<li> Oracle </li>
+<li> PostgreSQL </li>
+<li> SQLite </li>
+</ul>
+```
