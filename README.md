@@ -134,3 +134,32 @@ SELECT name, age,
   END AS category
 FROM students;
 ```
+
+
+## SQL ORDER BY Clause
+
+> ORDER BY is used to sort the result set of a query by one or more columns.
+
+- Default sorting is ascending (ASC).
+
+- You can also sort descending (DESC).
+
+<p>Sort by one column (descending)</p>
+
+```sql
+SELECT name, age, city
+FROM students
+ORDER BY age DESC;
+
+```
+
+<p>Sort by multiple columns</p>
+
+```sql
+-- Sort students by city first, then by age within each city
+SELECT name, age, city
+FROM students
+ORDER BY city ASC, age DESC
+LIMIT 5;
+
+```
