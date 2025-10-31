@@ -13,7 +13,7 @@
 ## SQL (Structured Query Language)
 > A language via which you can create, read, update, and delete data in a database.
 
-## SELECT
+### SELECT
 > The SELECT statement in SQL is used to retrieve data from a database.
 > SELECT * means choose all columns from a table
 ```sql
@@ -21,14 +21,14 @@ SELECT * FROM students; -- means all columns
 SELECT name, age FROM students; -- get only name and age columns
 ```
 
-## LIMIT
+### LIMIT
 > It is used to restrict the number of rows returned by a query. 
 
 ```sql
       SELECT * FROM customers LIMIT 10;
 ```
 
-## WHERE
+### WHERE
 > It allows me not all rows but some rows base on conditions is true
 ```sql
 SELECT * FROM students WHERE age >= 18 LIMIT 3;
@@ -84,8 +84,8 @@ SELECT * FROM employees WHERE city = 'Dhaka' OR city = 'Rajshahi';
 > Operator	Purpose	Example
 - BETWEEN ... AND ...	Select values within a range	WHERE   age   BETWEEN 18 AND 25
 - IN	Match a set of values	WHERE city IN ('Dhaka', 'Rajshahi')
-- LIKE	Pattern matching	WHERE name LIKE 'A%'
-  IS NULL	Check for empty value	WHERE email IS NULL
+- IS NULL	Check for empty value	WHERE email IS NULL
+
 
 ```sql
 -- Students aged 18 to 25
@@ -94,11 +94,32 @@ SELECT * FROM students WHERE age BETWEEN 18 AND 25;
 -- Students living in specific cities
 SELECT * FROM students WHERE city IN ('Dhaka', 'Rajshahi');
 
--- Students whose name starts with A
-SELECT * FROM students WHERE name LIKE 'A%';
-
 -- Students with missing email
 SELECT * FROM students WHERE email IS NULL;
+```
+
+
+#### SQL LIKE Operator
+
+- LIKE is used in a WHERE clause to match patterns in string data.
+
+There are two special wildcards:
+`%	Zero or more characters	'A%' matches Amin, Ali`
+`_	Exactly one character	'A_i_' matches Amin, Avid`
+
+```sql
+-- Names starting with A
+SELECT * FROM students WHERE name LIKE 'A%';
+
+-- Names containing "mi" anywhere
+SELECT * FROM students WHERE name LIKE '%mi%';
+
+-- Names with 4 letters, starting with A
+SELECT * FROM students WHERE name LIKE 'A___';
+
+-- Names starting with A, 4 or more letters, third letter is 'i'
+SELECT * FROM students WHERE name LIKE 'A_i%';
+
 ```
 
 ### Conditional Expression (CASE)
