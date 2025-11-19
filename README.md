@@ -465,42 +465,39 @@ The database engine (written in C/C++) converts SQL into efficient machine opera
 
 SQL, however:
 
-is a high-level declarative language
+- is a high-level **declarative language**  
+- runs inside a database engine written in **C/C++**  
+- cannot control memory, CPU, threads, pointers, or hardware  
+- cannot outperform the language it is implemented in  
 
-runs inside a database engine written in C/C++
-
-cannot control memory, CPU, threads, pointers, or hardware
-
-cannot outperform the language it is implemented in
-
-So raw computing speed:
-🏆 C/C++ >>> SQL
+So raw computing speed:  
+🏆 **C/C++ >>> SQL**
 
 
 ## Then why does SQL feel fast?
 
 > Because the database engine (written in C/C++) does the heavy lifting.
 
-SQL itself is NOT fast.
-The database engine is fast.
+SQL itself is **NOT** fast.  
+The database engine is fast.  
 
-SQL is fast for data queries, not for computation
+SQL is fast for **data queries**, not for computation.  
 
 SQL is extremely fast at:
 
-✔ searching
-✔ filtering
-✔ joining tables
-✔ sorting
-✔ indexing
+- ✅ Searching  
+- ✅ Filtering  
+- ✅ Joining tables  
+- ✅ Sorting  
+- ✅ Indexing  
 
 But C/C++ is faster at:
 
-✔ loops
-✔ math / computation
-✔ memory operations
-✔ algorithms
-✔ real-time systems
+- ⚡ Loops  
+- ⚡ Math / computation  
+- ⚡ Memory operations  
+- ⚡ Algorithms  
+- ⚡ Real-time systems
 
 ## Why Indexing Important in DBMS ?
 
