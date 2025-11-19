@@ -679,3 +679,191 @@ SELECT * FROM users WHERE user_id = 345678;
 ## Interview-ready Answer
 
 - “When a database uses an index to search a value, it doesn’t scan the full table. Instead, it searches the index, which is usually a B-tree or hash table. The index maps column values to row locations. For a B-tree, the database starts at the root, traverses the tree using comparisons, reaches the leaf node, and fetches the row. This reduces search time from O(n) to O(log n), making queries much faster.”
+
+
+
+________________________________________________
+
+# Some advance database 
+
+## Recursive query
+
+```sql
+with recursive Sequence as(
+-- anchor query
+Select
+1 as Curent_number
+
+UNION ALL
+
+-- Recursive query
+select 
+Curent_number + 1
+from Sequence
+where Curent_number < 20
+)
+
+select * from Sequence;
+
+```
+
+
+```sql
+-- Print even from 1 - 1000; 
+WITH RECURSIVE PRIME AS (
+-- Anchor query 
+SELECT 
+2 as EVEN
+
+UNION ALL
+
+-- Recursive query 
+SELECT
+EVEN + 2
+FROM PRIME
+WHERE EVEN < 1000
+)
+
+SELECT * FROM PRIME;
+
+```
+
+
+
+
+
+
+## Loop in sql
+
+```sql
+-- For loop TO print sequence
+
+DELIMITER $$
+
+CREATE PROCEDURE print_sequence()
+BEGIN
+	DECLARE i INT DEFAULT 2;
+    
+    CREATE TEMPORARY TABLE IF NOT EXISTS tmp_numbers(sequence INT); 
+    myLoop: LOOP
+         INSERT INTO tmp_numbers (sequence) VALUES(i);
+         SET i = i + 3;
+         
+		IF i > 20 THEN
+			   LEAVE myLoop;
+		END IF;
+    END LOOP;
+    
+END$$
+
+DELIMITER ;
+
+CALL print_sequence();
+SELECT * FROM tmp_numbers;
+DROP TEMPORARY TABLE IF EXISTS tmp_numbers;
+DROP PROCEDURE IF EXISTS print_sequence;
+```
+
+Generate Prime no using Loop
+```sql
+DELIMITER $$
+CREATE PROCEDURE prime_Gen()
+BEGIN
+    DECLARE i INT DEFAULT 2;
+    DECLARE isPrime INT;
+    DECLARE j INT DEFAULT 2;
+    
+    DROP TEMPORARY Table IF EXISTS primes;
+    CREATE TEMPORARY Table primes(n INT);
+    outer_loop: LOOP
+        IF i > 1000 THEN
+               LEAVE outer_loop;
+		END IF;
+        
+		SET j = 2;
+        SET isPrime = 1;
+        inner_loop: LOOP
+                   IF j >= i THEN
+                         LEAVE inner_loop;
+					END IF;
+                    
+                   IF MOD(i, j) = 0 THEN 
+						SET isPrime = 0;
+                        LEAVE inner_loop;
+					END IF;
+                    SET j = j + 1;
+					END LOOP inner_loop;
+                    
+		IF isPrime = 1 THEN INSERT INTO primes (n) VALUES(i);
+        END IF;
+		SET i = i + 1;
+	END LOOP outer_loop;
+END$$
+DELIMITER ;
+
+call prime_Gen();
+SELECT GROUP_CONCAT(n ORDER BY n SEPARATOR '&') FROM primes;
+DROP TEMPORARY TABLE IF EXISTS prime;
+DROP PROCEDURE IF EXISTS prime_Gen;
+```
+
+
+
+## Pivoting rows into columns with ranking
+OLD Mathod
+
+```sql
+-- Step 1: Initialize row number variables for each occupation
+
+SET @doctor_rn := 0;
+SET @professor_rn := 0;
+SET @singer_rn := 0;
+SET @actor_rn := 0;
+
+-- Step 2: Pivot table query
+SELECT 
+     MAX(CASE WHEN Occupation = 'Doctor' THEN Name END) AS Doctor, 
+     MAX(CASE WHEN Occupation = 'Professor' THEN Name END) AS Professor,
+     MAX(CASE WHEN Occupation = 'Singer' THEN Name END) AS Singer,
+     MAX(CASE WHEN Occupation = 'Actor' THEN Name END) AS Actor
+     
+FROM (
+	SELECT Name, Occupation, 
+             CASE Occupation
+				WHEN 'Doctor' THEN (@doctor_rn := @doctor_rn + 1)
+                WHEN 'Professor' THEN (@professor_rn := @professor_rn + 1)
+                WHEN 'Singer' THEN (@singer_rn := @singer_rn + 1)
+                WHEN 'Actor' THEN (@actor_rn := @actor_rn + 1)
+			END AS rn
+		FROM OCCUPATIONS
+        ORDER BY Occupation, Name 
+	) AS ranked
+    GROUP BY rn
+    ORDER BY rn;
+```
+
+## CTE(commont Table Expression)
+
+```sql
+Pivoting rows into columns with ranking    
+USING CTE 
+
+
+WITH ranked AS(
+	SELECT 
+	   Name, 
+	   Occupation, 
+	   ROW_NUMBER() OVER(PARTITION BY Occupation ORDER BY Name) AS rn
+	FROM OCCUPATIONS
+)
+
+SELECT 
+	MAX(CASE WHEN Occupation = 'Doctor' THEN Name END) AS Doctor,
+    MAX(CASE WHEN Occupation = 'Professor' THEN Name END) AS Professor,
+    MAX(CASE WHEN Occupation = 'Singer' THEN Name END) AS Singer,
+    MAX(CASE WHEN Occupation = 'Actor' THEN Name END) AS Actor
+FROM ranked
+GROUP BY rn
+ORDER BY rn;
+
+```
