@@ -69,10 +69,19 @@
 ### Primary Key:
 > To uniquely identify every table there needs a key is called primary key.
 
-**Foreign Key:**
+## A Table can have multiple Primary key ?
+“No, a table cannot have two primary keys. If two columns are unique, one is chosen as the primary key and the other is defined as a unique (alternate) key.”
+
+### Foreign Key:
 > Is a key that is `Primary key` of another table.
 
-### Types of database
+
+### Composite Primary Key?
+
+> A composite primary key = 2 or more columns together uniquely identify a row.
+
+
+## Types of database
 
 **SQL(Structure Query Language):**
 
