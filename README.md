@@ -1,4 +1,5 @@
 #  Intro to Databases with SQL 
+Hello in my laptop
 
 ## What is DBMS
 > A collection of data organized for creating, reading, updating, and deleting.
